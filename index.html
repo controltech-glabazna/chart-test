@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamický graf</title>
+  <title>Chart.js Dynamic Chart</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Odkaz na externí CSS soubor -->
+  <script type="module" src="/src/script.js" defer></script>
 </head>
 <body>
-  <canvas id="dynamicChart" width="400" height="200"></canvas>
-  <script type="module" src="/src/script.js"></script>
+  <div id="controls">
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </div>
+  <canvas id="chart" width="800" height="400"></canvas>
 </body>
 </html>

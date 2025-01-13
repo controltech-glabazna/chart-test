@@ -4,9 +4,10 @@ import 'chartjs-adapter-moment';
 import { getData } from './data.js'; // Import funkce pro generování dat
 
 let dynamicChart;
+let running = false
 
 function initializeChart() {
-  const ctx = document.getElementById('dynamicChart').getContext('2d');
+  const ctx = document.getElementById('chart').getContext('2d');
 
   dynamicChart = new Chart(ctx, {
     type: 'line',
@@ -80,15 +81,24 @@ async function addData() {
 
 // Rekurzivní časovač pro přidávání dat
 async function startUpdating() {
-  try {
-    await addData(); // Přidej nová data do grafu
-  } catch (error) {
-    console.error('Chyba při aktualizaci grafu:', error);
+  if (running) {
+    try {
+      await addData(); // Přidej nová data do grafu
+    } catch (error) {
+      console.error('Chyba při aktualizaci grafu:', error);
+    }
+    setTimeout(startUpdating, 1000); // Spusť další aktualizaci po 1 sekundě
   }
-  setTimeout(startUpdating, 1000); // Spusť další aktualizaci po 1 sekundě
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   initializeChart();
   startUpdating(); // Spusť rekurzivní časovač
 });
+
+document.getElementById("start").addEventListener("click", () => { 
+  running = true 
+  startUpdating()
+})
+document.getElementById("stop").addEventListener("click", () => { running = false })
+
