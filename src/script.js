@@ -78,7 +78,17 @@ async function addData() {
   dynamicChart.update();
 }
 
+// Rekurzivní časovač pro přidávání dat
+async function startUpdating() {
+  try {
+    await addData(); // Přidej nová data do grafu
+  } catch (error) {
+    console.error('Chyba při aktualizaci grafu:', error);
+  }
+  setTimeout(startUpdating, 1000); // Spusť další aktualizaci po 1 sekundě
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initializeChart();
-  setInterval(() => addData(), 1000); // Volání aktualizace každou sekundu
+  startUpdating(); // Spusť rekurzivní časovač
 });
