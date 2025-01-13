@@ -1,1 +1,18 @@
-node_modules/
+# Ignore node_modules folders for both backend and frontend
+backend/node_modules/
+frontend/node_modules/
+
+# Ignore environment configuration files
+.env
+
+# Ignore build files for frontend (např. pokud používáš Vite nebo jiný bundler)
+frontend/dist/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files (např. editor nebo operační systém)
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

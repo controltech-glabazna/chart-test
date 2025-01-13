@@ -1,3 +1,6 @@
+
+
+
 // Funkce vrátí Promise, která se vyřeší s náhodným číslem v intervalu 0-100
 export async function getData() {
   return new Promise((resolve) => {
